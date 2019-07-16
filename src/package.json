@@ -1,26 +1,55 @@
 {
   "name": "src",
   "version": "0.0.0",
+  "author": "Gian Fonseca",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www"
+    "start": "nodemon ./bin/www",
+    "test": "jest"
   },
   "dependencies": {
+    "blob-util": "^2.0.2",
+    "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
+    "date-time": "^3.1.0",
     "debug": "~2.6.9",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "knex": "^0.19.0",
+    "md5": "^2.2.1",
     "migrate": "^1.6.2",
     "module-alias": "^2.2.0",
     "morgan": "~1.9.1",
     "mysql": "^2.17.1",
-    "pug": "2.0.0-beta11"
+    "pug": "2.0.0-beta11",
+    "request": "^2.88.0",
+    "request-promise": "^4.2.4"
   },
   "_moduleAliases": {
-    "@root"       : ".",
-    "@models"      : "models/",
-    "@controllers" : "controllers/",
-    "@routes" : "routes/"
+    "@root": ".",
+    "@models": "models/",
+    "@controllers": "controllers/",
+    "@routes": "routes/",
+    "@environment": "environment/"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coverageReporters": [
+      "json",
+      "html"
+    ],
+    "moduleNameMapper": {
+      "@root(.*)$": "<rootDir>",
+      "@models(.*)$": "<rootDir>/models/$1.js",
+      "@controllers(.*)$": "<rootDir>/controllers/$1.js",
+      "@routes(.*)$": "<rootDir>/routes/$1.js",
+      "@environment(.*)$": "<rootDir>/environment/$1.js"
+    }
+  },
+  "directories": {
+    "test": "test"
   }
 }
