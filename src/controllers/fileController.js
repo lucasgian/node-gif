@@ -23,6 +23,19 @@ const getAll = async(req, res) => {
 
 }
 
+/** Retorna uma gif solicitada.
+ *  @param req, recebe um identificador, que é link da gif em questão.
+ *  @return res, objeto do tipo gif.
+ */
+const toLinkAccess = async(req, res) => {
+
+  gif.selectDirect( { link: req.params.link } ).then( result => {
+    res.send(result);
+  });
+
+}
+
+
 /** Retorna a gif privada solicitada, coso a chave seja valida.
  *  @param req, recebe um chave, que é key da gif em questão.
  *  @return res, objeto do tipo gif.
@@ -54,8 +67,8 @@ const destroy = async(req, res) => {
 const store = async(req, res) => {
 
   gif.insert({
-      name: req.body.name,
-      tag: req.body.tag,
+      file: req.body.file,
+      key: req.body.key,
       visibility: req.body.visibility,
       dateLimit: req.body.dateLimit
   }).then( result => {
@@ -65,4 +78,4 @@ const store = async(req, res) => {
 }
 
 
-module.exports = { get, getAll, toValidAccess, destroy, store };
+module.exports = { get, getAll, toValidAccess, destroy, store, toLinkAccess };

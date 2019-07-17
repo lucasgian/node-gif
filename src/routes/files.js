@@ -19,6 +19,12 @@ router.get('/gifs/:id', file_controller.get);
 */
 router.get('/gifs/private/:key', file_controller.toValidAccess);
 
+/** GET busca uma gif especifica
+* @param link, recebe o link da gif.
+*/
+router.get('/gifs/search/:link', file_controller.toLinkAccess);
+
+
 /** DELETE delete uma gif especifica, atraves do seu id (param)
 * @param id, recebe o id da gif.
 */
