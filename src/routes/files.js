@@ -1,15 +1,38 @@
-var express = require('express');
-var router = express.Router();
+/** Rotas usando o padrão restful
+*
+*/
+const express = require('express');
+const router = express.Router();
 
-/* GET home page. */
-router.get('/', (req, res, next) => {
-  res.render('index', { title: 'Express' });
-});
+const file_controller = require('@controllers/fileController');
 
-/* GET connection db test. */
-router.get('/db', (req, res, next) => {
+/** GET busca todas as gifs publicas salvas */
+router.get('/gifs', file_controller.getAll);
 
-  res.render('index', { title: 'Express' });
-});
+/** GET busca uma gif especifica, atraves do seu id (param)
+* @param id, recebe o id da gif.
+*/
+router.get('/gifs/:id', file_controller.get);
 
+/** GET busca uma gif privada especifica, atraves da sua chave (param)
+* @param id, recebe o id da gif.
+*/
+router.get('/gifs/private/:key', file_controller.toValidAccess);
+
+/** GET busca uma gif especifica
+* @param link, recebe o link da gif.
+*/
+router.get('/gifs/search/:link', file_controller.toLinkAccess);
+
+
+/** DELETE delete uma gif especifica, atraves do seu id (param)
+* @param id, recebe o id da gif.
+*/
+router.delete('/gifs/:id', file_controller.destroy);
+
+/** POST compartilha uma nova gif */
+router.post('/gifs', file_controller.store);
+
+
+//router.get('/teste', file_controller.store);
 module.exports = router;
