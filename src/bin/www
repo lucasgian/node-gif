@@ -19,6 +19,8 @@ app.set('port', port);
  * Create HTTP server.
  */
 
+ process.setMaxListeners(0);
+
 var server = http.createServer(app);
 
 /**

@@ -29,8 +29,21 @@ const getAll = async(req, res) => {
  */
 const toLinkAccess = async(req, res) => {
 
+  const today = new Date();
+
   gif.selectDirect( { link: req.params.link } ).then( result => {
-    res.send(result);
+
+    if ( !result[0] ) {
+      res.send();
+    }
+    else if ( today > result[0].dateLimit ) {
+        destroy( { id: result[0].id }, res );
+    } else {
+      res.send(result[0]);
+    }
+
+    //res.send(result);
+
   });
 
 }
@@ -54,8 +67,8 @@ const toValidAccess = async(req, res) => {
  */
 const destroy = async(req, res) => {
 
-  gif.remove( { id: req.params.id } ).then( result => {
-    res.send(result);
+  gif.remove( { id: req.id } ).then( result => {
+    res.send( { message: 'removed' } );
   });
 
 }
@@ -77,5 +90,15 @@ const store = async(req, res) => {
 
 }
 
+/** Cria uma gif, apartir de um video.
+ *  @param req, recebe um objeto do tipo gif.
+ *  @return res, mesagem de sucesso ou falha.
+ */
+const toGif = async(req, res) => {
 
-module.exports = { get, getAll, toValidAccess, destroy, store, toLinkAccess };
+  store(req, res);
+
+}
+
+
+module.exports = { get, getAll, toValidAccess, destroy, store, toLinkAccess, toGif };
