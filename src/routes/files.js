@@ -33,6 +33,9 @@ router.delete('/gifs/:id', file_controller.destroy);
 /** POST compartilha uma nova gif */
 router.post('/gifs', file_controller.store);
 
+/** POST cria uma gif, convertendo vídeo em gif */
+router.post('/create/gifs', file_controller.toGif);
+
 
 //router.get('/teste', file_controller.store);
 module.exports = router;

@@ -12,7 +12,7 @@ const select = () => {
         connection: db
     });
 
-    return knex.select('*').from('gif_file').then((result) => {
+    return knex.select('*').from('gif_file').where('file_visibility', '=', true).then((result) => {
 
         return result;
 
@@ -103,8 +103,6 @@ const insert = async gif => {
     //Gera link de acesso
     const md5 = require('md5');
     const file_link = md5(gif.dateLimit + '' + Math.random());
-
-
 
     return knex('gif_file').insert([
         {
