@@ -4,7 +4,7 @@
   "author": "Gian Fonseca",
   "private": true,
   "scripts": {
-    "start": "nodemon ./bin/www",
+    "start": "node ./bin/www",
     "test": "jest"
   },
   "dependencies": {
