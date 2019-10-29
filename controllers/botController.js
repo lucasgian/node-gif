@@ -37,4 +37,4 @@ const store = async(req, res) => {
 
 }
 
-module.exports = { get, getAll, destroy, store };
+module.exports = { getAll, destroy, store };
