@@ -28,6 +28,32 @@ const select = () => {
 
 }
 
+/** Consulta no banco de dados se bot existe pelo menos uma bot.
+*  @return uma array de objetos do tipo file bot.
+ */
+const selectRandom = () => {
+
+    const knex = require('knex')({
+        client: 'mysql',
+        connection: db
+    });
+
+    return knex.select('*').from('bot').orderByRaw('RAND()').limit(1).then((result) => {
+
+        return result;
+
+    }).catch((err) => {
+
+        return err.error;
+
+    }).finally(() => {
+
+        knex.destroy();
+
+    });
+
+}
+
 /** Insere no banco de dados uma bot.
 *  @param bot, recebe um objeto bot.
 *  @return res, mesagem de sucesso ou falha.
@@ -57,6 +83,7 @@ const insert = async bot => {
   });
 }
 
+
 /** Deleta do banco de dados uma bot.
 *  @param bot, recebe um objeto bot.
 *  @return res, mesagem de sucesso ou falha.
@@ -84,4 +111,4 @@ const remove = bot => {
 
 }
 
-module.exports = { select, insert, remove };
+module.exports = { select, insert, remove, selectRandom };

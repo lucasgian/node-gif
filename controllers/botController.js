@@ -11,13 +11,24 @@ const getAll = async(req, res) => {
 
 }
 
+/** Retorna todas bot compartilhadas (públicas).
+ *  @return res, array de objetos do tipo bot.
+ */
+const random = async(req, res) => {
+
+  bot.selectRandom().then( result => {
+    res.send(result);
+  });
+
+}
+
 /** Delete uma bot compartilhada.
  *  @param req, recebe um identificador, que é id da bot em questão.
  *  @return res, mesagem de sucesso ou falha.
  */
 const destroy = async(req, res) => {
 
-  bot.remove( { id: req.id } ).then( result => {
+  bot.remove( { id: req.params.id } ).then( result => {
     res.send( { message: 'removed' } );
   });
 
@@ -37,4 +48,4 @@ const store = async(req, res) => {
 
 }
 
-module.exports = { getAll, destroy, store };
+module.exports = { getAll, destroy, store, random };
