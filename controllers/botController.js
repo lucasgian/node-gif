@@ -17,7 +17,7 @@ const getAll = async(req, res) => {
 const random = async(req, res) => {
 
   bot.selectRandom().then( result => {
-    res.send(result);
+    res.send(result[0]);
   });
 
 }
