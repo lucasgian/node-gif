@@ -14,7 +14,7 @@
     "date-time": "^3.1.0",
     "debug": "~2.6.9",
     "grabzit": "*",
-    "express": "~4.16.1",
+    "express": "~4.17.3",
     "ffmpeg": "0.0.4",
     "gifify": "^2.4.3",
     "gify": "^0.2.0",
